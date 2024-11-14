@@ -1,5 +1,5 @@
 {
-  "appId": "com.logistica",
+  "appId": "com.example.app",
   "appName": "logistica",
-  "webDir": "dist"
+  "webDir": "dist/logistica/browser"
 }
