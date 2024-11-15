@@ -171,7 +171,7 @@ router.post('/contacto', async (req, res) => {
   }
 
   try {
-    const contacto = await contacto.create(req.body);
+    const contacto = await Contacto.create(req.body);
     res.body = contacto;
     // Respuesta exitosa
     response.success(req, res, 201, 'Contacto creado exitosamente');
