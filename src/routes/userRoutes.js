@@ -105,8 +105,6 @@ router.post('/user/login', async (req, res) => {
 });
 
 
-
-
 router.post('/set-contacto', (req, res) => {
   const { usuario, correo, descripcion } = req.body;
 
@@ -160,6 +158,27 @@ router.post('/evento/asistencia/create', (req, res) => {
 
   // Respuesta exitosa
   response.success(req, res, 201, 'Usuario Correcto');
+});
+
+
+// Ruta para agregar un nuevo contacto
+router.post('/contacto', async (req, res) => {
+  const { nombre, correo, descripcion} = req.body;
+
+  // Validación de los campos
+  if (!nombre || !correo || !descripcion) {
+    return response.error(req, res, 400, 'Todos los campos son obligatorios');
+  }
+
+  try {
+    const contacto = await contacto.create(req.body);
+    res.body = contacto;
+    // Respuesta exitosa
+    response.success(req, res, 201, 'Contacto creado exitosamente');
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+
 });
 
 module.exports = router;
